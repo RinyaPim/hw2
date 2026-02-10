@@ -1,0 +1,84 @@
+namespace MBi
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+           
+
+        }
+
+        private void BMIFORM_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            {
+                int weight = 0;
+                double height = 0.0, cm = 0.0;
+                double bmi = 0.0;
+                string result = "";
+
+                //เช็ก error และ คำนวณ
+                if (int.TryParse(textweight.Text, out weight) && double.TryParse(textheight.Text, out cm))
+                {
+                    if (weight >= 20 && weight <= 350 && cm >= 30 && cm <= 250)
+                    {
+                        height = cm / 100;
+                        bmi = weight / (height * height);
+                        textBMI.Text = string.Format("{0:F2}", bmi);
+
+                        //แปลผล
+                        if (bmi < 18.6)
+                        {
+                            lblResult1.Text = string.Format("ผอมเกินไป :\n\n    น้ำหนักน้อยกว่าปกติก็ไม่ค่อยดี หากคุณสูงมากแต่น้ำหนักน้อยเกินไป " +
+                                "อาจเสี่ยงต่อการได้รับสารอาหารไม่เพียงพอหรือได้รับพลังงานไม่เพียงพอ ส่งผลให้ร่างกายอ่อนเพลียง่าย " +
+                                "การรับประทานอาหารให้เพียงพอ และการออกกำลังกายเพื่อเสริมสร้างกล้ามเนื้อสามารถช่วยเพิ่มค่า BMI " +
+                                "ให้อยู่ในเกณฑ์ปกติได้");
+                        }
+                        else if (bmi < 25)
+                        {
+                            lblResult1.Text = string.Format("น้ำหนักปกติ :\n\n    น้ำหนักที่เหมาะสมสำหรับคนไทยคือค่า BMI ระหว่าง 18.5-24 " +
+                                "จัดอยู่ในเกณฑ์ปกติ ห่างไกลโรคที่เกิดจากความอ้วน และมีความเสี่ยงต่อการเกิดโรคต่าง ๆ น้อยที่สุด " +
+                                "ควรพยายามรักษาระดับค่า BMI ให้อยู่ในระดับนี้ให้นานที่สุด และควรตรวจสุขภาพทุกปี");
+                        }
+                        else if (bmi < 30)
+                        {
+                            lblResult1.Text = string.Format("อ้วน :\n\n    อ้วนในระดับหนึ่ง ถึงแม้จะไม่ถึงเกณฑ์ที่ถือว่าอ้วนมาก ๆ " +
+                                "แต่ก็ยังมีความเสี่ยงต่อการเกิดโรคที่มากับความอ้วนได้เช่นกัน ทั้งโรคเบาหวาน และความดันโลหิตสูง " +
+                                "ควรปรับพฤติกรรมการทานอาหาร ออกกำลังกาย และตรวจสุขภาพ");
+                        }
+                        else
+                        {
+                            lblResult1.Text = string.Format("อ้วนมาก :\n\n    ค่อนข้างอันตราย เสี่ยงต่อการเกิดโรคร้ายแรงที่แฝงมากับความอ้วน " +
+                                "หากค่า BMI อยู่ในระดับนี้ จะต้องปรับพฤติกรรมการทานอาหาร และควรเริ่มออกกำลังกาย " +
+                                "และหากเลขยิ่งสูงกว่า 40.0 ยิ่งแสดงถึงความอ้วนที่มากขึ้น ควรไปตรวจสุขภาพ และปรึกษาแพทย์");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("ลองอีกครั้ง", "ข้อมูลผิดพลาด");
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("ลองอีกครั้ง", "ข้อมูลผิดพลาด");
+                }
+            }
+        }
+    }
+}
